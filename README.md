@@ -12,7 +12,7 @@
 
 ### Getting started
 ```
-% sls --name YOUR_PROJECT_NAME --template-url https://github.com/vmotta8/sls-typescript-template
+% serverless create --name YOUR_PROJECT_NAME --template-url https://github.com/vmotta8/sls-typescript-template
 % cd YOUR_PROJECT_NAME
 % yarn
 % yarn test
