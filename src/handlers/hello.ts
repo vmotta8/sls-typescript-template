@@ -4,16 +4,17 @@ import { HelloService } from './services/helloService'
 import createError from 'http-errors'
 
 /*
-const repository = new Repository()
-const service = new HelloService(
+const repository = new myRepository()
+const service = new myService(
   repository
 )
 */
-const helloService = new HelloService()
+
+const service = new HelloService()
 
 async function hello (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
   try {
-    const hello = helloService.execute()
+    const hello = service.execute()
     return {
       statusCode: 200,
       body: JSON.stringify({ message: hello })

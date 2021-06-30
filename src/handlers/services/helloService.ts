@@ -1,9 +1,10 @@
 export class HelloService {
   /*
   constructor(
-    private repository: IRepository
+    private repository: RepositoryInterface
   ) {}
   */
+
   execute () {
     return 'Hello!!'
   }
