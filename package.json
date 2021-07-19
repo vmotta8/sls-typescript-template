@@ -27,7 +27,9 @@
     "eslint-plugin-promise": "^5.1.0",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.3",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "serverless": "^2.51.2",
+    "serverless-offline": "^7.0.0"
   },
   "dependencies": {
     "@middy/core": "^2.4.2",

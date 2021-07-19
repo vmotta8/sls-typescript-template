@@ -8,7 +8,7 @@ provider:
   region: us-east-1
   apiGateway:
     shouldStartNameWithService: true
-  stage: dev
+  stage: local
   
 functions:
   hello:
@@ -17,3 +17,6 @@ functions:
       - http:
           method: GET
           path: /hello
+
+plugins:
+  - serverless-offline
