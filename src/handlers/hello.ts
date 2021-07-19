@@ -1,15 +1,15 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import { commonMiddleware } from '../lib/middlewares/commonMiddleware'
-import { HelloService } from '../services/HelloService'
+import { HelloUsecase } from '../usecases/HelloUsecase'
 import createError from 'http-errors'
 
 async function hello (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
   try {
-    const service = new HelloService()
-    const hello = service.execute()
+    const usecase = new HelloUsecase()
+    const result = usecase.execute()
     const body = {
-      message: hello,
-      input: event
+      result: result,
+      event: event
     }
     return {
       statusCode: 200,
