@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import { commonMiddleware } from '../lib/middlewares/commonMiddleware'
 import { HelloUsecase } from '../usecases/HelloUsecase'
-import createError from 'http-errors'
 
 async function hello (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
   try {
@@ -11,13 +10,17 @@ async function hello (event: APIGatewayProxyEvent, context: Context): Promise<AP
       result: result,
       event: event
     }
-    return {
+    const response = {
       statusCode: 200,
       body: JSON.stringify(body)
     }
-  } catch (error) {
-    console.log(error)
-    throw new createError.InternalServerError(error)
+    return response
+  } catch {
+    const error = {
+      statusCode: 500,
+      body: 'Internal Server Error'
+    }
+    return error
   }
 }
 
