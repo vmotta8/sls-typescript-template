@@ -17,6 +17,11 @@
 % yarn test
 ```
 
+### How to run locally
+```
+% yarn dev
+```
+
 ### How to deploy
 ```
 % yarn deploy
