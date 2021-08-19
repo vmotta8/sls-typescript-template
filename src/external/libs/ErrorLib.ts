@@ -21,7 +21,10 @@ export const ErrorLib = {
   },
 
   generate_ (errorNumber: number): Error {
-    const error = getErrorMessage(errorNumber)
+    let error = getErrorMessage(errorNumber)
+    if (!error) {
+      error = getErrorMessage(1000)
+    }
     const errorResponse = {
       statusCode: error[0],
       body: JSON.stringify({ 
