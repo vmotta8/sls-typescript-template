@@ -4,12 +4,15 @@
   "description": "Serverless Application",
   "main": "index.js",
   "scripts": {
-    "deploy": "rimraf dist && tsc && sls deploy -v",
-    "dev": "rimraf dist && tsc && sls offline start",
+    "build": "rimraf dist && tsc",
+    "deploy": "yarn build && sls deploy -v",
+    "dev": "yarn build && sls offline start",
+    "start": "sls offline start",
+    "lint": "eslint --fix 'src/**/*.ts' && eslint --fix 'test/**/*.ts'",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --setupFiles dotenv/config",
     "test:unit": "npm test -- --watch -c jest-unit.config.js",
-    "eslint": "eslint 'src/**/*.ts' && eslint 'test/**/*.ts'",
-    "eslint:fix": "eslint --fix 'src/**/*.ts' && eslint --fix 'test/**/*.ts'"
+    "test:integration": "npm test -- --watch -c jest-integration.config.js",
+    "test:ci": "npm test -- --coverage"
   },
   "keywords": [
     "Serverless Application"
@@ -34,10 +37,6 @@
     "serverless-offline": "^7.0.0"
   },
   "dependencies": {
-    "@middy/core": "^2.4.2",
-    "@middy/http-error-handler": "^2.4.2",
-    "@middy/http-event-normalizer": "^2.4.2",
-    "@middy/http-json-body-parser": "^2.4.2",
     "aws-lambda": "^1.0.6"
   }
 }

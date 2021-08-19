@@ -1,27 +1,20 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
-import { commonMiddleware } from '../lib/middlewares/commonMiddleware'
 import { HelloUsecase } from '../usecases/HelloUsecase'
+import { ErrorLib } from '../../src/external/libs/ErrorLib'
 
-async function hello (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
+export async function handler (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
   try {
     const usecase = new HelloUsecase()
     const result = usecase.execute()
-    const body = {
-      result: result,
-      event: event
-    }
     const response = {
       statusCode: 200,
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        result: result,
+        event: event
+      })
     }
     return response
-  } catch {
-    const error = {
-      statusCode: 500,
-      body: 'Internal Server Error'
-    }
-    return error
+  } catch (error) {
+    return ErrorLib.format_(error)
   }
 }
-
-export const handler = commonMiddleware(hello)
