@@ -3,7 +3,6 @@
     "outDir": "dist",
     "target": "es5",
     "module": "commonjs",
-    "moduleResolution": "node",
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true,
@@ -16,7 +15,6 @@
     "noImplicitReturns": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
     "rootDirs": [
       "./src",
       "./test"

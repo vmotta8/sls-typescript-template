@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import { HelloUsecase } from '../usecases/HelloUsecase'
-import { ErrorLib } from '../../src/external/libs/ErrorLib'
 
 export async function handler (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
   try {
@@ -15,6 +14,11 @@ export async function handler (event: APIGatewayProxyEvent, context: Context): P
     }
     return response
   } catch (error) {
-    return ErrorLib.format_(error)
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        result: error
+      })
+    }
   }
 }
