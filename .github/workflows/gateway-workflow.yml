@@ -61,14 +61,14 @@ jobs:
       - name: Create env file # Environment secrets
         run: |
           touch .env
-          echo NODE_ENV=${{secrets.NODE_ENV}} >> .env
+          echo NODE_ENV="${{secrets.NODE_ENV}}" >> .env
 
       - name: Serverless deploy
         uses: serverless/github-action@v2
         with:
           args: deploy
         env: # Repository secrets
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   
   deploy-staging:
@@ -107,12 +107,12 @@ jobs:
       - name: Create env file # Environment secrets
         run: |
           touch .env
-          echo NODE_ENV=${{secrets.NODE_ENV}} >> .env
+          echo NODE_ENV="${{secrets.NODE_ENV}}" >> .env
 
       - name: Serverless deploy
         uses: serverless/github-action@v2
         with:
           args: deploy
         env: # Repository secrets
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
