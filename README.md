@@ -4,9 +4,9 @@
 
 ### What's included
   - Typescript
-  - Eslint
   - Jest
-  - Middy
+  - Eslint
+  - Husky
   - Simple hello service and handler
 
 ### Getting started
@@ -19,7 +19,7 @@
 
 ### How to run locally
 ```
-% yarn dev
+% yarn build:start
 ```
 
 ### How to deploy

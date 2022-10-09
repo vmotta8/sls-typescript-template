@@ -1,5 +1,7 @@
 service: sls-typescript-template
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs14.x
@@ -8,7 +10,7 @@ provider:
   region: us-east-1
   apiGateway:
     shouldStartNameWithService: true
-  stage: local
+  stage:  ${env:NODE_ENV}
   
 functions:
   hello:

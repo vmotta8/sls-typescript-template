@@ -1,0 +1,13 @@
+@startuml Architecture
+
+!include <C4/C4_Container>
+!include <C4/C4_Context>
+
+left to right direction
+
+Person(user, "User")
+Container(serverless, "Api", "Serverless Nodejs")
+
+user <--> serverless
+
+@enduml

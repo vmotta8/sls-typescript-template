@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "deploy": "yarn build && sls deploy -v",
-    "dev": "yarn build && sls offline start",
     "start": "sls offline start",
+    "build:start": "yarn build && yarn start",
+    "deploy": "yarn build:start && sls deploy",
+    "install:development": "yarn --frozen-lockfile",
+    "install:production": "rimraf node_modules && yarn --production --frozen-lockfile",
     "lint": "eslint --fix 'src/**/*.ts' && eslint --fix 'test/**/*.ts'",
     "test": "jest --runInBand",
-    "test:unit": "npm test -- --watch -c jest-unit.config.js",
-    "test:integration": "npm test -- --watch -c jest-integration.config.js",
+    "test:watch": "npm test -- --watch",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky install"
   },

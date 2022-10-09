@@ -1,0 +1,76 @@
+name: Serverless workflow
+
+on: ['push']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: |
+          yarn --frozen-lockfile
+
+      - name: Lint files
+        run: |
+          yarn lint
+
+      - name: Run all tests
+        run: |
+          yarn test
+  
+  deploy:
+    if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/main'
+    environment: dev
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install development dependencies
+        run: |
+          yarn install:development
+
+      - name: Build application
+        run: |
+          yarn build
+
+      - name: Remove local plugins
+        run: |
+          yq eval -i 'del(.plugins)' serverless.yml
+
+      - name: Install production dependencies
+        run: |
+          yarn install:production
+
+      - name: Create env file # branch variables
+        run: |
+          touch .env
+          echo NODE_ENV=${{secrets.NODE_ENV}} >> .env
+
+      - name: Serverless deploy
+        uses: serverless/github-action@v2
+        with:
+          args: deploy
+        env: # repository variables
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
