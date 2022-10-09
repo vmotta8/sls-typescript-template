@@ -3,13 +3,13 @@ name: Serverless workflow
 on: ['push']
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [14]
 
-    test:
+    steps:
       - uses: actions/checkout@v2
 
       - name: Set up Node.js ${{ matrix.node-version }}
@@ -21,13 +21,9 @@ jobs:
         run: |
           yarn --frozen-lockfile
 
-      - name: Lint files
+      - name: Run coverage
         run: |
-          yarn lint
-
-      - name: Run all tests
-        run: |
-          yarn test
+          yarn coverage
   
   deploy:
     if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/main'

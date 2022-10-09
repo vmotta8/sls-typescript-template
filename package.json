@@ -13,7 +13,7 @@
     "lint": "eslint --fix 'src/**/*.ts' && eslint --fix 'test/**/*.ts'",
     "test": "jest --runInBand",
     "test:watch": "npm test -- --watch",
-    "test:ci": "npm test -- --coverage",
+    "coverage": "npm test -- --coverage",
     "prepare": "husky install"
   },
   "keywords": [
