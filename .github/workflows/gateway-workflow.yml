@@ -26,8 +26,10 @@ jobs:
           yarn coverage
   
   deploy:
-    if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/main'
-    environment: dev
+    if: github.ref == 'refs/heads/main'
+      environment: main
+    if: github.ref == 'refs/heads/staging'
+      environment: staging
 
     runs-on: ubuntu-latest
     strategy:
