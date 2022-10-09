@@ -10,7 +10,7 @@ provider:
   region: us-east-1
   apiGateway:
     shouldStartNameWithService: true
-  stage:  ${env:NODE_ENV}
+  stage: ${env:NODE_ENV}
   
 functions:
   hello:
