@@ -9,7 +9,7 @@ jobs:
       matrix:
         node-version: [14]
 
-    steps:
+    test:
       - uses: actions/checkout@v2
 
       - name: Set up Node.js ${{ matrix.node-version }}
@@ -62,7 +62,7 @@ jobs:
         run: |
           yarn install:production
 
-      - name: Create env file # branch variables
+      - name: Create env file # Environment secrets
         run: |
           touch .env
           echo NODE_ENV=${{secrets.NODE_ENV}} >> .env
@@ -71,6 +71,6 @@ jobs:
         uses: serverless/github-action@v2
         with:
           args: deploy
-        env: # repository variables
+        env: # Repository secrets
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
