@@ -1,15 +1,11 @@
 # Documentation
 
 ### Diagrams
-- PlantUML is being used with the C4 lib to generate the application diagrams
+- Excalidraw is used to draw diagrams, it is an open source tool and the diagram file is a json, so we can version it
 
 ##### *Useful Links*
-- [https://plantuml.com/](https://plantuml.com/)
-- [https://plantuml.com/stdlib](https://plantuml.com/stdlib)
-- [https://c4model.com/](https://c4model.com/)
-- [https://github.com/plantuml-stdlib/C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML)
-- [https://github.com/plantuml/plantuml-stdlib/tree/master/C4](https://github.com/plantuml/plantuml-stdlib/tree/master/C4)
+- [https://excalidraw.com/](https://excalidraw.com/)
 
 ##### *Recommendations*
-- Install [PlantUML vscode extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
-- You can use the [PlantUML website to preview](https://www.plantuml.com/plantuml) the diagrams
+- [Install Excalidraw vscode extension](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)
+- [Excalidraw libraries](https://libraries.excalidraw.com/)
