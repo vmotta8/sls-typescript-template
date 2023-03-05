@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "start": "sls offline start",
-    "build:start": "yarn build && yarn start",
-    "deploy": "yarn build:start && sls deploy",
+    "start": "yarn build && yarn start",
+    "deploy": "yarn build && sls deploy",
     "install:development": "yarn --frozen-lockfile",
     "install:production": "rimraf node_modules && yarn --production --frozen-lockfile",
     "lint": "eslint --fix 'src/**/*.ts' && eslint --fix 'test/**/*.ts'",
